@@ -71,6 +71,12 @@ mdutil -i on ${VOLUME_PATH};
 # Sleep so that Spotlight has some time to index the files on the volume.
 sleep 5;
 
+# Capture Spotlight VolumeConfig.plist.
+sudo mdutil -P ${VOLUME_PATH} > ${SPECIMENS_PATH}/${IMAGE_NAME}.VolumeConfig.plist;
+
+# Capture Spotlight metadata attributes about files.
+mdls ${VOLUME_PATH}/LICENSE > ${SPECIMENS_PATH}/LICENSE.mdls;
+
 hdiutil detach disk${VOLUME_DEVICE_NUMBER};
 
 exit ${EXIT_SUCCESS};
